@@ -1,0 +1,45 @@
+COPY FOR AI LICENSE
+Version 1.0
+Effective Date: Mon 17th Feb 2025
+
+1. Grant of License
+This software (the “Software”) is licensed, not sold. By obtaining, downloading, or using the Software, you (“Licensee”) agree to be bound by the terms of this License. The Licensor, Franz Bender, grants you a non-exclusive, non-transferable, revocable, worldwide license to:
+- (a) Use the compiled form of the Software for personal and commercial purposes;
+- (b) View the source code for reference and educational purposes only.
+
+2. Permitted Uses
+You may install and use the compiled Software for commercial endeavors provided you comply with all terms of this License. You may view the source code only to understand how the Software functions. No additional permissions beyond those stated here are granted.
+
+3. Restrictions
+Except as explicitly permitted above, you may not, directly or indirectly:
+- Modify, adapt, translate, or create derivative works of the Software.
+- Sell, rent, lease, sublicense, distribute, or otherwise transfer the Software or its source code.
+- Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code from its compiled form.
+- Copy or reuse any portion of the source code in any other software, product, or project.
+- Use the Software’s source code or compiled form for training artificial intelligence models or other automated analysis.
+- Upload or share the Software’s source code in any public repository.
+- Use the Software in violation of any applicable law or in malicious or fraudulent activities.
+- Bypass or circumvent security or technical measures implemented in the Software.
+
+4. Ownership and Copyright
+All intellectual property rights in and to the Software are and shall remain the exclusive property of Franz Bender. This License does not transfer any ownership rights to you. You must not remove or alter any copyright notices.
+
+5. No Warranty and Limited Liability
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE SOFTWARE IS PROVIDED “AS IS,” WITHOUT ANY WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY DAMAGES (INCLUDING INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES) ARISING OUT OF THE USE OR INABILITY TO USE THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. YOU ASSUME ALL RISK AND LIABILITY FOR RESULTS OBTAINED BY USING THE SOFTWARE. IF APPLICABLE LAW DOES NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR LIMITATIONS OF LIABILITY, THOSE EXCLUSIONS AND LIMITATIONS SHALL APPLY TO THE FULLEST EXTENT PERMITTED BY LAW.
+
+6. Updates and Support
+The Licensor is under no obligation to provide updates, patches, or support. Any updates provided do not create new warranties or expand the scope of this License. All updates, if any, are subject to the same terms.
+
+7. Termination
+This License may be terminated if you fail to comply with its terms. Upon termination, you must cease using and destroy all copies of the Software in your possession. Provisions intended by their nature to survive termination will remain in effect.
+
+8. Compliance and Legal
+You agree to use the Software in compliance with all applicable laws and regulations, including export control and sanction laws. This License is governed by and construed in accordance with the laws of your applicable jurisdiction without regard to conflict-of-law principles. Any legal disputes shall be resolved in the courts of that jurisdiction.
+
+9. Miscellaneous
+This License constitutes the entire agreement between you and Franz Bender regarding the Software. If any provision is deemed invalid or unenforceable, the remaining provisions remain in full force and effect. The Licensor’s failure to enforce any right under this License is not a waiver of that right. No additional implied rights or licenses are granted by estoppel or otherwise.
+
+By installing, downloading, or otherwise using Copy for AI, you acknowledge that you have read this License, understand its terms, and agree to be bound by it.
+
+Copyright (c) 2025 Franz Bender
+All Rights Reserved

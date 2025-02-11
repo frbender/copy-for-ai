@@ -1,0 +1,82 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>de.franzbender.copyforai</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Copy For AI</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="frbender@franz-bender.de" url="https://franz-bender.de">Franz Bender</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+        <strong>Copy For AI</strong> is a simple yet powerful plugin that helps developers easily copy and share code and directory structures in a format optimized for AI assistance.<br><br>
+
+        <h3>Features:</h3>
+        <ul>
+            <li><strong>Copy For AI</strong> - Copies the raw content of selected files to the clipboard for direct AI processing.</li>
+            <li><strong>Copy For AI Compacted</strong> - Removes unnecessary boilerplate, method bodies, and redundant code while preserving the structure, making the file easier to analyze for AI.</li>
+            <li><strong>Copy Tree Structure</strong> - Generates and copies a well-formatted text-based tree structure of selected directories/files, useful for sharing folder layouts.</li>
+        </ul>
+
+        <h3>Use Cases:</h3>
+        <ul>
+            <li>Quickly sharing code snippets with AI chatbots like ChatGPT.</li>
+            <li>Sending a compacted version of files for AI analysis without unnecessary clutter.</li>
+            <li>Providing a clear textual representation of a project's directory structure.</li>
+        </ul>
+
+        <h3>How to Use:</h3>
+        <ol>
+            <li>Right-click on any file, multiple files, or directories in IntelliJ IDEA.</li>
+            <li>Find the <strong>"Copy For AI"</strong> menu in the context menu.</li>
+            <li>Select either <strong>"Copy For AI"</strong>, <strong>"Copy For AI Compacted"</strong>, or <strong>"Copy Tree Structure"</strong> depending on your needs.</li>
+            <li>The content will be copied to the clipboard, ready to be pasted into an AI assistant or anywhere else.</li>
+        </ol>
+
+        <br><br>
+
+        <i>Disclaimer: This plugin does not contain any AI or share any information with anyone. It simply helps you format your code for AI processing.</i>
+
+        <br><br>
+        🚀 <em>Make sharing code with AI faster and more efficient with Copy For AI!</em>
+    ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+        <group id="de.franzbender.copyforai.CopyForAIPopup" text="Copy For AI" description="Copy For AI" popup="true" icon="/pluginIcon.svg">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </group>
+        <action id="de.franzbender.copyforai.CopyForAIAction"
+                class="de.franzbender.copyforai.CopyForAIAction"
+                text="Copy For AI"
+                description="Copy the file content for AI processing">
+            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="last"/>
+        </action>
+        <action id="de.franzbender.copyforai.CopyForAICompactedAction"
+                class="de.franzbender.copyforai.CopyForAICompactedAction"
+                text="Copy For AI Compacted"
+                description="Copy a compacted version of the file, optimized for AI">
+            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="last"/>
+        </action>
+        <action id="de.franzbender.copyforai.CopyTreeStructureAction"
+                class="de.franzbender.copyforai.CopyTreeStructureAction"
+                text="Copy Tree Structure"
+                description="Generate and copy a tree structure of the selected files">
+            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="last"/>
+        </action>
+    </actions>
+
+</idea-plugin>
