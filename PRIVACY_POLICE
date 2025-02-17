@@ -1,0 +1,29 @@
+COPY FOR AI – PRIVACY POLICY
+Last Updated: Mon 17th Feb 2025
+
+1. Introduction
+Thank you for using the “Copy for AI” plugin (“the Plugin”). This Privacy Policy explains what information is collected, used, and shared by the Plugin. By installing or using the Plugin, you agree to the terms of this Privacy Policy.
+
+2. Offline Functionality
+The Plugin is designed to run entirely offline and does not transmit or collect any personal data from you or your device. The Plugin does not connect to external servers, track user activity, or gather analytics.
+
+3. Source Code on GitHub
+The Plugin’s source code is publicly available on GitHub. Any data you provide to GitHub (e.g., via issues, pull requests, or discussions) is governed by GitHub’s own privacy policy. We have no control over and assume no responsibility for any personal information you share on GitHub’s platform.
+
+4. Third-Party Tools (IntelliJ)
+The Plugin operates within the IntelliJ platform (or other JetBrains IDEs). IntelliJ or JetBrains may collect usage or diagnostic data. Such data collection is governed by JetBrains’ own privacy policies. We do not receive, process, or store any data collected by JetBrains or other third-party tools.
+
+5. No Data Collection
+- No personal or usage data is collected by the Plugin.
+- No cookies or similar tracking technologies are used.
+- No crash reports or analytics are transmitted to us.
+
+6. Changes to This Policy
+We may update this Privacy Policy from time to time. Any changes will be posted in the Plugin’s repository or documentation with a new “Last Updated” date. Your continued use of the Plugin after any changes indicates your acceptance of those changes.
+
+7. Contact Information
+If you have any questions or concerns about this Privacy Policy or the Plugin’s data handling practices, please contact:
+Franz Bender
+jacket-folium-6e@icloud.com
+
+By installing or using the Plugin, you acknowledge that you have read and understood this Privacy Policy.
