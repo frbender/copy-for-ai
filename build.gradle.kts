@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.franz-bender.copy-for-ai"
-version = "1.0-SNAPSHOT"
+version = "1.3-SNAPSHOT"
 
 repositories {
     mavenCentral()

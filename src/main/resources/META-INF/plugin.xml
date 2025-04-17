@@ -14,13 +14,14 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-        <strong>Copy For AI</strong> is a simple yet powerful plugin that helps developers easily copy and share code and directory structures in a format optimized for AI assistance.<br><br>
+        <strong>Copy For AI</strong> is a simple yet powerful plugin that helps developers easily copy and share code and directory structures in a format optimized for AI assistance, and apply AI-generated code back into their project.<br><br>
 
         <h3>Features:</h3>
         <ul>
             <li><strong>Copy For AI</strong> - Copies the raw content of selected files to the clipboard for direct AI processing.</li>
             <li><strong>Copy For AI Compacted</strong> - Removes unnecessary boilerplate, method bodies, and redundant code while preserving the structure, making the file easier to analyze for AI.</li>
             <li><strong>Copy Tree Structure</strong> - Generates and copies a well-formatted text-based tree structure of selected directories/files, useful for sharing folder layouts.</li>
+            <li><strong>Paste From AI</strong> - Takes text from the clipboard (typically an AI response) containing specific code blocks and applies them to your project files, creating or replacing them as needed.</li>
         </ul>
 
         <h3>Use Cases:</h3>
@@ -28,19 +29,75 @@
             <li>Quickly sharing code snippets with AI chatbots like ChatGPT.</li>
             <li>Sending a compacted version of files for AI analysis without unnecessary clutter.</li>
             <li>Providing a clear textual representation of a project's directory structure.</li>
+            <li>Applying code patches or new files suggested by an AI directly into your project from the clipboard.</li>
         </ul>
 
         <h3>How to Use:</h3>
+        <h4>Copying Content:</h4>
         <ol>
-            <li>Right-click on any file, multiple files, or directories in IntelliJ IDEA.</li>
-            <li>Find the <strong>"Copy For AI"</strong> menu in the context menu.</li>
+            <li>Right-click on any file, multiple files, or directories in the Project view in IntelliJ IDEA.</li>
+            <li>Find the <strong>"Copy For AI"</strong> submenu in the context menu.</li>
             <li>Select either <strong>"Copy For AI"</strong>, <strong>"Copy For AI Compacted"</strong>, or <strong>"Copy Tree Structure"</strong> depending on your needs.</li>
             <li>The content will be copied to the clipboard, ready to be pasted into an AI assistant or anywhere else.</li>
         </ol>
 
+        <h4>Pasting from AI:</h4>
+        <ol>
+            <li>Copy the response from your AI assistant to the clipboard. Ensure the response contains code blocks in the expected format:
+                <br><code>&lt;code to="/absolute/path/to/your/file.ext"&gt;<br>```[optional_language]<br>// Code content here...<br>```<br>&lt;/code&gt;</code>
+                <br>(Note: The <code>```</code> fences inside the <code>&lt;code&gt;</code> tag are optional but handled if present). <br>The path specified in the 'to' attribute <strong>must be absolute</strong>.
+            </li>
+            <li>Right-click anywhere in the Project view or Editor window.</li>
+            <li>Find the <strong>"Copy For AI"</strong> submenu and select <strong>"Paste From AI"</strong>.</li>
+            <li>The plugin will parse the clipboard content, validate the file paths (checking if they are absolute), and show a confirmation dialog listing the files to be created or replaced. Invalid blocks (e.g., non-absolute paths) will be reported and skipped.</li>
+            <li>Review the list and click "Apply Changes" to proceed, or "Cancel" to abort.</li>
+            <li>The plugin will then attempt to write the code content to the specified files.</li>
+        </ol>
+
+        <h3>Example AI Prompt (for use with ChatGPT, Claude, Gemini, etc.):</h3>
+        <p>To get responses compatible with the "Paste From AI" feature, you can use a prompt structure like this:</p>
+        <pre><code>
+You are a leading expert in AWS architecture and backend engineering, specializing in Python and Terraform. Your role is to provide reliable, production-level code and infrastructure solutions that adhere to industry best practices.
+
+Core Guidelines:
+- **Complete Code:** Always provide complete, functional code files unless instructed otherwise. Avoid partial code snippets.
+- **Clean, Well-Structured Code:** Adhere to clean coding principles. Structure your code to be readable, maintainable, and scalable.
+- **Dependency Injection in Python:** Use dependency injection to facilitate testing. For example:
+    ```
+    def __init__(self, dep_1: Optional[Dep1Type] = None, ...):
+        self.dep_1 = dep_1 if dep_1 is not None else Dep1()
+    ```
+- **Best Practices &amp; Patterns:** Emphasize industry best practices in all aspects of your work.
+- **Thoughtful Design:** Analyze and confirm requirements before coding. Ensure that you understand the problem fully and double-check your solution.
+- **Clarification First:** If there is any ambiguity in the request, ask follow-up questions rather than attempting to provide a solution immediately.
+
+Code Output Format:
+- When providing code, include it in the following format to facilitate automatic extraction:
+
+&lt;code to="/absolute/path/to/your/project/backend/example.py"&gt;
+```python
+# Your complete code goes here
+```
+&lt;/code&gt;
+
+&lt;code to="/absolute/path/to/your/project/backend/example.json"&gt;
+```json
+{ "test": 123 }
+```
+&lt;/code&gt;
+
+Additional Instructions:
+* Prioritize a complete and polished deliverable that represents production-quality work.
+* Document your code where necessary to clarify design decisions and usage.
+* Maintain a consistent approach that reflects your expertise in AWS, Python backend development, and Terraform.
+
+--- [Your specific task/request goes here] ---
+        </code></pre>
+
+
         <br><br>
 
-        <i>Disclaimer: This plugin does not contain any AI or share any information with anyone. It simply helps you format your code for AI processing.</i>
+        <i>Disclaimer: This plugin does not contain any AI or share any information with anyone. It simply helps you format your code for AI processing and apply formatted code back into your project. Always review changes proposed by the "Paste From AI" feature before confirming.</i>
 
         <br><br>
         🚀 <em>Make sharing code with AI faster and more efficient with Copy For AI!</em>
@@ -56,27 +113,41 @@
     </extensions>
 
     <actions>
-        <group id="de.franzbender.copyforai.CopyForAIPopup" text="Copy For AI" description="Copy For AI" popup="true" icon="/pluginIcon.svg">
+        <!-- Group definition -->
+        <group id="de.franzbender.copyforai.CopyForAIPopup" text="Copy For AI" description="Copy For AI Actions" popup="true" icon="/pluginIcon.svg">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+            <!-- Add to EditorPopup as well for easier access -->
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </group>
+
+        <!-- Copy Actions -->
         <action id="de.franzbender.copyforai.CopyForAIAction"
                 class="de.franzbender.copyforai.CopyForAIAction"
                 text="Copy For AI"
                 description="Copy the file content for AI processing">
-            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="last"/>
+            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="first"/>
         </action>
         <action id="de.franzbender.copyforai.CopyForAICompactedAction"
                 class="de.franzbender.copyforai.CopyForAICompactedAction"
                 text="Copy For AI Compacted"
                 description="Copy a compacted version of the file, optimized for AI">
-            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="last"/>
+            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="after" relative-to-action="de.franzbender.copyforai.CopyForAIAction"/>
         </action>
         <action id="de.franzbender.copyforai.CopyTreeStructureAction"
                 class="de.franzbender.copyforai.CopyTreeStructureAction"
                 text="Copy Tree Structure"
                 description="Generate and copy a tree structure of the selected files">
-            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="last"/>
+            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="after" relative-to-action="de.franzbender.copyforai.CopyForAICompactedAction"/>
+        </action>
+        <!-- Paste Action -->
+        <action id="de.franzbender.copyforai.PasteFromAIAction"
+                class="de.franzbender.copyforai.PasteFromAIAction"
+                text="Paste From AI"
+                description="Paste and apply code blocks from AI response into files">
+            <!-- Add to the custom group -->
+            <add-to-group group-id="de.franzbender.copyforai.CopyForAIPopup" anchor="after" relative-to-action="Separator"/>
+            <!-- Also add directly to the Editor popup before the standard paste -->
+            <add-to-group group-id="EditorPopupMenu" anchor="before" relative-to-action="$Paste"/>
         </action>
     </actions>
-
 </idea-plugin>

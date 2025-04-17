@@ -15,6 +15,8 @@ import java.awt.datatransfer.StringSelection
 import java.nio.charset.StandardCharsets
 
 class CopyForAIAction : AnAction() {
+    val MAX_FILES = 1000
+    val MAX_LENGTH = 200000
 
     override fun actionPerformed(event: AnActionEvent) {
         val selectedFiles = event.getData(CommonDataKeys.VIRTUAL_FILE_ARRAY)
@@ -24,8 +26,8 @@ class CopyForAIAction : AnAction() {
         }
         val filesToProcess = mutableListOf<VirtualFile>()
         selectedFiles.forEach { collectFilesRecursively(it, filesToProcess) }
-        if (filesToProcess.size > 1000) {
-            showNotification("Too many files selected: ${filesToProcess.size}. Maximum allowed is 1000.", NotificationType.ERROR)
+        if (filesToProcess.size > MAX_FILES) {
+            showNotification("Too many files selected: ${filesToProcess.size}. Maximum allowed is $MAX_FILES.", NotificationType.ERROR)
             return
         }
         val output = StringBuilder()
@@ -52,8 +54,8 @@ class CopyForAIAction : AnAction() {
                 }
                 else -> {
                     val content = file.loadText() ?: "Error reading file content"
-                    val truncatedContent = if (content.length > 10000) {
-                        "${content.take(10000)}\n... (truncated)"
+                    val truncatedContent = if (content.length > MAX_LENGTH) {
+                        "${content.take(MAX_LENGTH)}\n# ... (truncated)\n"
                     } else content
                     output.append("# file: $filePath (text)\n")
                     output.append("```\n")
